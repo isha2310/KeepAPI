@@ -7,6 +7,6 @@ router.param('userId', getUserById)
 
 router.get('/user/:userId', isSignedIn, isAuthenticated, getUser) 
 
-router.patch('/user/:userId', isSignedIn, isAuthenticated, updatePin)
+router.patch('/update/:userId', isSignedIn, isAuthenticated, updatePin)
 
 module.exports = router
