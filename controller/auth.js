@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 exports.signup = (req,res) => {
     const error = validationResult(req)
     if(!error.isEmpty()) {
-        res.status(422).json({
+        return res.status(422).json({
             errors: error.array()[0].msg
         })
     }
