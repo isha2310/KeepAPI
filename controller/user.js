@@ -5,7 +5,7 @@ exports.getUserById = (req, res, next, userId) => {
     User.findById(userId).exec((err, user) => {
         if(err || !user) {
             return res.status(422).json({
-                error: 'Cannot find the user'
+                errors: 'Cannot find the user'
             })
         }
         req.profile = user
@@ -24,7 +24,7 @@ exports.updatePin = (req, res) => {
     user.save((err, user) => {
         if(err){
             return res.status(400).json({
-                error: 'Failed to update'
+                errors: 'Failed to update'
             })
         }
         res.status(200).json('Pin updated')

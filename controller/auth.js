@@ -13,7 +13,7 @@ exports.signup = (req,res) => {
     user.save((err, user) => {
         if(err){
             res.status(400).json({
-                error: 'Error saving user in DB'
+                errors: 'Error saving user in DB'
             })
         } else {
             const token = jwt.sign({ _id: user._id }, process.env.SECRET)
@@ -35,12 +35,12 @@ exports.signin = (req, res) => {
     User.findOne({ name } , (err, user) => {
         if(err || !user){
             return res.status(400).json({
-                error: 'Cannot find user in DB'
+                errors: 'Cannot find user in DB'
             })
         }
         if(!user.authenticate(password)) {
             return res.status(400).json({
-                error: 'Username and password do not match.'
+                errors: 'Username and password do not match.'
             })
         }
         const token = jwt.sign({ _id: user._id}, process.env.SECRET)

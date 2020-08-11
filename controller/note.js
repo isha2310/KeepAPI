@@ -4,7 +4,7 @@ exports.getNoteById = (req, res, next, noteId) => {
     Note.findById(noteId).exec((err, note) => {
         if(err || !note){
             return res.status(422).json({
-                error: 'Note not found'
+                errors: 'Note not found'
             })
         }
         req.note = note
@@ -17,7 +17,7 @@ exports.createNote = (req, res) => {
     note.save((err, note) => {
         if(err){
             return res.status(400).json({
-                error: 'Note cannot be created!'
+                errors: 'Note cannot be created!'
             })
         }
         res.status(200).json({ note })
@@ -32,7 +32,7 @@ exports.updateNote = (req, res) => {
         (err, note) => {
             if(err){
                 return res.status(422).json({
-                    error: 'Cannot update the note.'
+                    errors: 'Cannot update the note.'
                 })
             }
             res.json({note})
@@ -58,7 +58,7 @@ exports.removeNote = (req, res) => {
     note.remove((err, msg) => {
         if(err) {
             return res.status(400).json({
-                error: 'Cannot remove the note'
+                errors: 'Cannot remove the note'
             })
         }
         res.json({
